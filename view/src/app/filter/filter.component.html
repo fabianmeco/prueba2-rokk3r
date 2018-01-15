@@ -1,0 +1,72 @@
+<div class="container">
+  <!-- <div class="row button-panel">
+    <button type="button" class="btn btn-info">Order by Name <i></i> </button>
+    <button type="button" class="btn btn-info">Order by Date <i></i> </button>
+    <button type="button" class="btn btn-info">Order by priority <i></i> </button>
+  </div> -->
+  <div class="row">
+    <div class="col-sm-5 col-sm-offset-1 ">
+      <h2>Overdue Tasks</h2>
+      <table>
+          <thead>
+            <tr>
+              <th [class.active]="order === 'name'" width="33.3" (click)="setOrder('name')">
+                Name
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+              </th>
+              <th [class.active]="order === 'priority'" width="33.3" (click)="setOrder('priority')" class="mdl-data-table__cell--non-numeric">
+                Priority
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+              </th>
+              <th [class.active]="order === 'dueDate'" width="33.3" (click)="setOrder('dueDate')" class="mdl-data-table__cell--non-numeric">
+                Due Date
+                <span [hidden]="reverse">▼</span>
+                <span [hidden]="!reverse">▲</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let overdue of overdueTasks | orderBy: order:reverse:'case-insensitive'">
+              <td>{{overdue.name}}</td>
+              <td>{{overdue.priority}}</td>
+              <td >{{overdue.dueDate | date:"shortDate"}}</td>
+            </tr>
+          </tbody>
+        </table>
+      
+    </div>
+
+    <div class="col-sm-5  ">
+      <h2>Pending Tasks</h2>
+      <table>
+        <thead>
+          <tr>
+            <th [class.active]="order === 'name'" width="33.3" (click)="setOrder('name')">
+              Name
+              <span [hidden]="reverse">▼</span>
+              <span [hidden]="!reverse">▲</span>
+            </th>
+            <th [class.active]="order === 'priority'" width="33.3" (click)="setOrder('priority')" class="mdl-data-table__cell--non-numeric">
+              Priority
+              <span [hidden]="reverse">▼</span>
+              <span [hidden]="!reverse">▲</span>
+            </th>
+            <th [class.active]="order === 'dueDate'" width="33.3" (click)="setOrder('dueDate')" class="mdl-data-table__cell--non-numeric">
+              Due Date
+              <span [hidden]="reverse">▼</span>
+              <span [hidden]="!reverse">▲</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pending of pendingTasks | orderBy: order:reverse:'case-insensitive'">
+            <td>{{pending.name}}</td>
+            <td>{{pending.priority}}</td>
+            <td >{{pending.dueDate | date:"shortDate"}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
